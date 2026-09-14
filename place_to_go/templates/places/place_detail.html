@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ place.title }}{% endblock %}
+
+{% block content %}
+    {% if place %}
+        <h2>Деталі про місце</h2>
+        {% include 'places/_place_card.html' with place=place is_detail=True %}
+    {% else %}
+        <p>Місце не знайдено.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Улюблені місця{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'home' %}">Головна</a> |
+            <a href="{% url 'place_list' %}">Список місць</a> |
+            <a href="{% url 'add_place' %}">Додати місце</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2026 Улюблені місця. Навчальний проєкт на Django.</p>
+    </footer>
+
+</body>
+</html>

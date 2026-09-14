@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Список місць{% endblock %}
+
+{% block content %}
+    <h2>Мої улюблені місця</h2>
+    <div class="places-grid">
+        {% for place in places %}
+            {% include 'places/_place_card.html' with place=place is_detail=False %}
+        {% empty %}
+            <p>У вас поки немає збережених місць.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

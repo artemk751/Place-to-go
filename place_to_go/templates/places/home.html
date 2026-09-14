@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Улюблені місця — Головна{% endblock %}
+
+{% block content %}
+    <section class="intro">
+        <h2>Улюблені місця</h2>
+        <p>Особиста колекція місць, куди можна піти повечеряти, погуляти або розважитись. Переглядайте список улюблених місць або дізнайтесь, куди піти сьогодні.</p>
+        <div class="nav-links">
+            <a href="{% url 'place_list' %}" class="btn">Список місць</a>
+            <a href="{% url 'add_place' %}" class="btn">Додати місце</a>
+        </div>
+    </section>
+
+    <section class="random-place-container">
+        <h2>🎲 Куди піти сьогодні?</h2>
+
+        {% if picked %}
+            {% if random_place %}
+                {% include 'places/_place_card.html' with place=random_place is_detail=False %}
+                <a href="{% url 'random_place' %}" class="btn">🔄 Обрати ще раз</a>
+            {% else %}
+                <p>У базі поки немає жодного місця. <a href="{% url 'add_place' %}">Додайте перше!</a></p>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'random_place' %}" class="btn">Куди піти сьогодні?</a>
+        {% endif %}
+    </section>
+{% endblock %}
