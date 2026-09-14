@@ -1,0 +1,35 @@
+{% load static %}
+<div class="place-card">
+    {% if place.id|divisibleby:2 %}
+        <img src="{% static 'images/default_place_2.jpg' %}" alt="Фото місця" width="200">
+    {% else %}
+        <img src="{% static 'images/default_place.jpg' %}" alt="Фото місця" width="200">
+    {% endif %}
+    <h3>
+        <a href="{% url 'place_detail' place.id %}">{{ place.title }}</a>
+    </h3>
+    <p><strong>Тип:</strong> {{ place.place_type }}</p>
+    <p>
+        <strong>Локація:</strong>
+        {% if place.location %}
+            {{ place.location }}
+        {% else %}
+            Secret place👀
+        {% endif %}
+    </p>
+    <p>
+        <strong>Опис:</strong>
+        {% if is_detail %}
+            {{ place.description }}
+        {% else %}
+            {{ place.description|truncatewords:5 }}
+        {% endif %}
+    </p>
+    <p>
+        <strong>Рейтинг:</strong>
+        {% for i in "12345" %}
+            {% if forloop.counter <= place.rating %}★{% else %}☆{% endif %}
+        {% endfor %}
+    </p>
+    <p><small>Дата відгуку: {{ place.created_at }}</small></p>
+</div>
